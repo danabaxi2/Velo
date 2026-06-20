@@ -21,7 +21,7 @@ export function HeroSection({ mouse }: HeroSectionProps) {
           transition={{ duration: 0.9, ease: revealEase }}
           className="max-w-xl"
         >
-          <p className="mb-4 text-[14px] font-medium uppercase tracking-[0.2em] text-accent-teal/60">
+          <p className="mb-4 text-[14px] font-medium uppercase tracking-[0.2em] text-black/60">
             AI-NATIVE ENTERPRISE OPERATIONS
           </p>
           <h1 className="text-[clamp(2rem,4.5vw,3.5rem)] font-normal leading-[55px] tracking-[-0.02em] text-black">
@@ -38,7 +38,7 @@ export function HeroSection({ mouse }: HeroSectionProps) {
           transition={{ duration: 0.9, delay: 0.15, ease: revealEase }}
           className="mt-auto self-end"
         >
-          <div className="max-w-sm rounded-3xl border border-black p-[19px]">
+          <div className="glass max-w-sm rounded-3xl border border-black p-[19px]">
             <p className="text-base leading-[21px] text-black/80">
               Velo consolidates work across integrators, admins, and project managers into one
               agentic platform governed by human approval and transparent business logic.

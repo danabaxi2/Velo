@@ -154,17 +154,29 @@ export function getShapePoints(
     }
 
     case 'human': {
+      const headY = cy - r * 1.0
+      const shoulderY = cy - r * 0.28
+      const hipY = cy + r * 0.34
+      const footY = cy + r * 1.0
+      const armReach = r * 0.8
+      const legOut = r * 0.44
+
       const pts = [
-        { x: cx, y: cy - r * 1.1, size: s * 1.1 },
-        { x: cx, y: cy - r * 0.3, size: s * 1.3 },
-        { x: cx, y: cy + r * 0.5, size: s * 1.2 },
-        { x: cx - r * 0.7, y: cy - r * 0.2, size: s * 0.9 },
-        { x: cx + r * 0.7, y: cy - r * 0.2, size: s * 0.9 },
-        { x: cx - r * 0.5, y: cy + r * 1.1, size: s * 0.85 },
-        { x: cx + r * 0.5, y: cy + r * 1.1, size: s * 0.85 },
-        { x: cx, y: cy + r * 1.3, size: s * 0.7 },
+        { x: cx, y: headY, size: s * 1.35 },
+        { x: cx, y: (headY + shoulderY) / 2, size: s * 0.7 },
+        { x: cx, y: shoulderY, size: s * 0.85 },
+        { x: cx, y: (shoulderY + hipY) / 2, size: s * 0.7 },
+        { x: cx, y: hipY, size: s * 0.85 },
+        { x: cx - armReach * 0.5, y: shoulderY, size: s * 0.75 },
+        { x: cx - armReach, y: shoulderY, size: s * 0.85 },
+        { x: cx + armReach * 0.5, y: shoulderY, size: s * 0.75 },
+        { x: cx + armReach, y: shoulderY, size: s * 0.85 },
+        { x: cx - legOut * 0.55, y: (hipY + footY) / 2, size: s * 0.75 },
+        { x: cx - legOut, y: footY, size: s * 0.85 },
+        { x: cx + legOut * 0.55, y: (hipY + footY) / 2, size: s * 0.75 },
+        { x: cx + legOut, y: footY, size: s * 0.85 },
       ]
-      return distribute(count, pts, seedBase)
+      return distribute(count, pts, seedBase + 2000)
     }
 
     case 'emptySquare': {

@@ -2,7 +2,7 @@
 @import "lenis/dist/lenis.css";
 
 @theme {
-  --color-accent-teal: #14b8a6;
+  --color-accent-teal: #00ce82;
   --color-accent-mint: #98ffd9;
   --color-accent-glow: #a7f3d0;
   --color-text-primary: #000000;
@@ -34,9 +34,33 @@ body {
   font-family: var(--font-sans);
   font-weight: 400;
   color: var(--color-text-primary);
-  background: #ffffff;
+  background: #f2f2f2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.glass {
+  background: rgb(242 242 242 / 0.55);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+.glass-button {
+  background: rgb(242 242 242 / 0.55);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    backdrop-filter 0.3s ease,
+    -webkit-backdrop-filter 0.3s ease;
+}
+
+.glass-button:hover {
+  background: var(--color-accent-mint);
+  border-color: var(--color-accent-mint);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

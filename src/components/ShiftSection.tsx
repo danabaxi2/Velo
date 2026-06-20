@@ -13,17 +13,18 @@ function easeBezier(t: number) {
   return 3 * (1 - t) * (1 - t) * t * 0.76 + 3 * (1 - t) * t2 * 0.24 + t3
 }
 
+/** plusCorners outer radius ≈ 28 * scale * 1.55 + jitter */
+const SHAPE_SCALE = 3.4
+const SHAPE_HALF_EXTENT = 28 * SHAPE_SCALE * 1.55 + 16
+const GAP_ABOVE_BODY = 250
+
 export function ShiftSection({ mouse }: ShiftSectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
+  const headlineRef = useRef<HTMLHeadingElement>(null)
   const bodyRef = useRef<HTMLParagraphElement>(null)
   const progress = useSectionScrollProgress(sectionRef)
-  const [anchors, setAnchors] = useState({
-    leftX: 200,
-    leftY: 500,
-    rightX: 600,
-    rightY: 500,
-  })
+  const [morphAnchor, setMorphAnchor] = useState({ x: 200, y: 500 })
 
   const headlineProgress = easeBezier(mapProgress(progress, 0.2, 0.9))
   const particleProgress = easeBezier(mapProgress(progress, 0.3, 1))
@@ -31,23 +32,35 @@ export function ShiftSection({ mouse }: ShiftSectionProps) {
   const headlineShift =
     typeof window !== 'undefined' ? headlineProgress * window.innerWidth * 0.48 : 0
 
-  const morphAnchor = {
-    x: anchors.leftX + (anchors.rightX - anchors.leftX) * (1 - particleProgress),
-    y: anchors.leftY,
-  }
-
   useEffect(() => {
     const update = () => {
       if (!bodyRef.current || !stickyRef.current) return
       const stickyRect = stickyRef.current.getBoundingClientRect()
       const bodyRect = bodyRef.current.getBoundingClientRect()
+      const halfWidth = stickyRect.width * 0.5
 
-      const leftX = bodyRect.left - stickyRect.left + bodyRect.width * 0.5
-      const leftY = bodyRect.top - stickyRect.top - 150
-      const rightX = stickyRect.width * 0.75
-      const rightY = stickyRect.height * 0.45
+      const bodyTop = bodyRect.top - stickyRect.top
+      const headlineBottom = headlineRef.current
+        ? headlineRef.current.getBoundingClientRect().bottom - stickyRect.top
+        : bodyTop - 320
 
-      setAnchors({ leftX, leftY, rightX, rightY })
+      const gapTop = headlineBottom + 32
+      const gapBottom = bodyTop - GAP_ABOVE_BODY
+      const gapMidY = (gapTop + gapBottom) / 2
+
+      const bodyCenterX = bodyRect.left - stickyRect.left + bodyRect.width * 0.45
+      const maxCenterX = halfWidth - SHAPE_HALF_EXTENT - 12
+      const minCenterX = SHAPE_HALF_EXTENT + 24
+      const anchorX = Math.max(minCenterX, Math.min(bodyCenterX, maxCenterX))
+
+      const minCenterY = gapTop + SHAPE_HALF_EXTENT
+      const maxCenterY = gapBottom - SHAPE_HALF_EXTENT
+      const anchorY =
+        maxCenterY >= minCenterY
+          ? Math.max(minCenterY, Math.min(gapMidY, maxCenterY))
+          : gapMidY
+
+      setMorphAnchor({ x: anchorX, y: anchorY })
     }
 
     update()
@@ -67,7 +80,7 @@ export function ShiftSection({ mouse }: ShiftSectionProps) {
           morphShape="plusCorners"
           morphProgress={particleProgress}
           morphAnchor={morphAnchor}
-          shapeScale={1.5}
+          shapeScale={SHAPE_SCALE}
           disableMouseAboveBlend={0.15}
         />
 
@@ -77,6 +90,7 @@ export function ShiftSection({ mouse }: ShiftSectionProps) {
               THE SHIFT
             </p>
             <h2
+              ref={headlineRef}
               className="max-w-lg text-[44px] font-normal leading-[45px] tracking-[-0.02em] text-black will-change-transform"
               style={{ transform: `translateX(${headlineShift}px)` }}
             >
