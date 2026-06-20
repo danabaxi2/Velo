@@ -47,7 +47,7 @@ export function FeatureCard({
           mouse={mouse}
         />
       </div>
-      <h3 className="text-center text-[38px] leading-tight tracking-[-0.01em] text-black md:text-left lg:text-center">
+      <h3 className="text-center text-[38px] font-light leading-tight tracking-[-0.02em] text-black md:text-left lg:text-center">
         {title}
       </h3>
       <p className="text-[25px] leading-[26px] text-black/70">{description}</p>

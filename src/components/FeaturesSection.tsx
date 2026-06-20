@@ -44,7 +44,7 @@ export function FeaturesSection({ mouse }: FeaturesSectionProps) {
         transition={{ duration: 0.9, ease: revealEase }}
         className="mb-12"
       >
-        <p className="text-[14px] font-medium uppercase tracking-[0.2em] text-accent-teal">
+        <p className="text-[14px] font-medium uppercase tracking-[0.14em] text-accent-teal">
           Capabilities
         </p>
       </motion.div>

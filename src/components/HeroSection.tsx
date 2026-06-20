@@ -21,10 +21,10 @@ export function HeroSection({ mouse }: HeroSectionProps) {
           transition={{ duration: 0.9, ease: revealEase }}
           className="max-w-xl"
         >
-          <p className="mb-4 text-[14px] font-medium uppercase tracking-[0.2em] text-black/60">
+          <p className="mb-4 text-[14px] font-medium uppercase tracking-[0.14em] text-black/60">
             AI-NATIVE ENTERPRISE OPERATIONS
           </p>
-          <h1 className="text-[clamp(2rem,4.5vw,3.5rem)] font-normal leading-[55px] tracking-[-0.02em] text-black">
+          <h1 className="text-[clamp(2rem,4.5vw,3.5rem)] font-light leading-[55px] tracking-[-0.03em] text-black">
             Enterprise systems, described in plain language.
           </h1>
           <div className="mt-8">

@@ -86,12 +86,12 @@ export function ShiftSection({ mouse }: ShiftSectionProps) {
 
         <div className="relative z-10 flex h-full flex-col px-8 pb-12 pt-28">
           <div className="max-w-lg">
-            <p className="mb-6 text-[14px] font-medium uppercase tracking-[0.2em] text-accent-teal">
+            <p className="mb-6 text-[14px] font-medium uppercase tracking-[0.14em] text-accent-teal">
               THE SHIFT
             </p>
             <h2
               ref={headlineRef}
-              className="max-w-lg text-[44px] font-normal leading-[45px] tracking-[-0.02em] text-black will-change-transform"
+              className="max-w-lg text-[44px] font-light leading-[45px] tracking-[-0.03em] text-black will-change-transform"
               style={{ transform: `translateX(${headlineShift}px)` }}
             >
               From specialists manually configuring systems, to business users describing what they

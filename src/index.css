@@ -6,7 +6,7 @@
   --color-accent-mint: #98ffd9;
   --color-accent-glow: #a7f3d0;
   --color-text-primary: #000000;
-  --font-sans: "PP Neue Montreal", "PPNeueMontreal-Book", "PP Neue Montreal Book", sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 * {
@@ -32,7 +32,8 @@ body {
   margin: 0;
   min-height: 100%;
   font-family: var(--font-sans);
-  font-weight: 400;
+  font-weight: 300;
+  letter-spacing: -0.012em;
   color: var(--color-text-primary);
   background: #f2f2f2;
   -webkit-font-smoothing: antialiased;
