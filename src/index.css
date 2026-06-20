@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+@theme {
+  --color-accent-teal: #14b8a6;
+  --color-accent-mint: #98ffd9;
+  --color-accent-glow: #a7f3d0;
+  --color-text-primary: #000000;
+  --font-sans: "PP Neue Montreal", "PPNeueMontreal-Book", "PP Neue Montreal Book", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* Base scale: 100% browser zoom matches prior 125% zoom appearance */
+  font-size: 125%;
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
